@@ -9,7 +9,7 @@ import Parser.ParseTreeNode;
 public class CodeGenerator {
     public void cgen( ParseTree tree, ParseTreeNode node ) {
         if( node.parent == null ) {
-            System.out.println("\t.text\n.globl main");
+            System.out.println("\t.text\n\t.globl main\nmain:");
             cgen( tree, node.children.get(0) );
             cgen( tree, node.children.get(1) );
             System.out.println( "li\t$v0, 1" );
@@ -25,7 +25,7 @@ public class CodeGenerator {
             cgen( tree, node.children.get( 1 ) );
             System.out.println( "lw\t$t1, 4($sp)" );
             System.out.println("add\t$a0, $t1, $a0");
-            System.out.println("addiu\n$sp, $sp, 4");
+            System.out.println("addiu\t$sp, $sp, 4");
             cgen( tree, node.children.get( 2 ) );
         }else
         if( node.symbol.getContent().equals( "Ep" ) ) {
@@ -41,8 +41,16 @@ public class CodeGenerator {
             cgen( tree, node.children.get( 1 ) );
             System.out.println( "lw\t$t1, 4($sp)" );
             System.out.println("add\t$a0, $t1, $a0");
-            System.out.println("addiu\n$sp, $sp, 4");
+            System.out.println("addiu\t$sp, $sp, 4");
             cgen( tree, node.children.get( 2 ) );
+        }else
+        if( node.symbol.getContent().equals( "Tp" ) ) {
+            return;
+        }else
+        if( node.symbol.getContent().equals( "F" ) && node.children.get( 0 ).symbol.getContent().equals( "openpar" ) ) {
+            cgen( tree, node.children.get(1) );
+        }else {
+            System.out.println("li\t$a0, " + node.children.get( 0 ).getValue());
         }
     }
 }
