@@ -40,7 +40,7 @@ public class CodeGenerator {
             System.out.println("addiu\t$sp, $sp, -4");
             cgen( tree, node.children.get( 1 ) );
             System.out.println( "lw\t$t1, 4($sp)" );
-            System.out.println("add\t$a0, $t1, $a0");
+            System.out.println("mult\t$a0, $t1, $a0");
             System.out.println("addiu\t$sp, $sp, 4");
             cgen( tree, node.children.get( 2 ) );
         }else
