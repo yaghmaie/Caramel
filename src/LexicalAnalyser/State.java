@@ -6,6 +6,9 @@ import java.util.HashSet;
  * Created by pejman on 5/23/14.
  */
 public class State {
+    /**
+     *
+     */
     private boolean isFinal = false;
     private String name;
     FA fa;

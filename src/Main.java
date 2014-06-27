@@ -1,12 +1,14 @@
-import CodeGenerator.CodeGenerator;
 import Fundamentals.Token;
 import LexicalAnalyser.DFA;
 import LexicalAnalyser.LexicalAnalyser;
-import LexicalAnalyser.LexicalAnalyserException;
 import LexicalAnalyser.Regex2DFA;
-import Parser.*;
+import Parser.CFG2ParseTable;
+import Parser.ParseTable;
+import Parser.ParseTree;
+import Parser.Parser;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by pejman on 3/17/14.
@@ -17,8 +19,8 @@ public class Main {
 
     public static void main( String[] args ) {
 
-        String code = "((3*2)+((12*5)+96*1127+458))*(43+2*1+45*12+123)";
-        //String code = "3*7";
+        //String code = "((3*2)+((12*5)+96*1127+458))*(43+2*1+45*12+123)";
+        String code = "4*7";
         //String code = "(3+1)(5+1)";
 
 
@@ -42,13 +44,11 @@ public class Main {
         );
 
         try {
-            LexicalAnalyser lexa = new LexicalAnalyser();
-            ArrayList<Token> tokenList = null;
-            tokenList = lexa.getTokenList( code, dfa );
+            ArrayList<Token> tokenList = new LexicalAnalyser().getTokenList( code, dfa );
 
-            /*for( Token tk : tokenList ) {
+            for( Token tk : tokenList ) {
                 tk.dump();
-            }*/
+            }
 
             ParseTable parseTable = new CFG2ParseTable().rules2ParseTable(
                     "E=%%~T~~Ep~%%\n" +
@@ -74,7 +74,8 @@ public class Main {
 
             ParseTree parseTree = new Parser().getParseTree( tokenList, parseTable );
             //parseTree.dump();
-            new CodeGenerator().cgen( parseTree, parseTree.root );
+            //new CodeGenerator().cgen( parseTree, parseTree.root );
+
         } catch ( Exception e ) {
             System.err.println( e.getMessage() );
         }
