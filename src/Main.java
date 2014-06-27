@@ -1,3 +1,21 @@
+/*
+ * Simple solutions for creating lexical analyzer, syntax analyzer, code generator.
+ *     Copyright (C) 2014  Pejman Yaghmaie.
+ *
+ *     This program is free software: you can redistribute it and/or modify
+ *     it under the terms of the GNU General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     any later version.
+ *
+ *     This program is distributed in the hope that it will be useful,
+ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *     GNU General Public License for more details.
+ *
+ *     You should have received a copy of the GNU General Public License
+ *     along with this program.  If not, see http://www.gnu.org/licenses/.
+ */
+
 import Fundamentals.Token;
 import LexicalAnalyser.DFA;
 import LexicalAnalyser.LexicalAnalyser;
@@ -19,8 +37,8 @@ public class Main {
 
     public static void main( String[] args ) {
 
-        //String code = "((3*2)+((12*5)+96*1127+458))*(43+2*1+45*12+123)";
-        String code = "4*7";
+        String code = "((3*2)+((12*5)+96*1127+458))*(43+2*1+45*12+123)";
+        //String code = "4*7";
         //String code = "(3+1)(5+1)";
 
 
