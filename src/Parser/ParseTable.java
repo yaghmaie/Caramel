@@ -25,13 +25,30 @@ import Fundamentals.BigTable;
  */
 public class ParseTable extends BigTable<NonTerminal, Terminal, RightHandSide> {
 
+    /**
+     * Empty right hand side for non-Terminal to epsilon productions
+     */
     final RightHandSide emptyRightHandSide = new RightHandSide();
+    /**
+     * Context-free grammar this parse table made of.
+     */
     final ContextFreeGrammar contextFreeGrammar;
 
+    /**
+     * Constructor sets cfg.
+     * @param cfg
+     */
     public ParseTable( ContextFreeGrammar cfg ) {
         contextFreeGrammar = cfg;
     }
 
+    /**
+     * Adds right hand side entry for non-Terminal and Terminal
+     * @param nonTerminal
+     * @param terminal
+     * @param rightHandSide
+     * @throws ConflictingParseTableEntryException
+     */
     public void addEntry( NonTerminal nonTerminal, Terminal terminal, RightHandSide rightHandSide ) throws ConflictingParseTableEntryException {
         if( theTable.containsKey( nonTerminal ) ) {
             if( theTable.get( nonTerminal ).containsKey( terminal ) ) {
@@ -41,12 +58,22 @@ public class ParseTable extends BigTable<NonTerminal, Terminal, RightHandSide> {
         addSecondaryKey( nonTerminal, terminal, rightHandSide );
     }
 
+    /**
+     * Returns right hand side entry for non-Terminal and Terminal.
+     * @param nonTerminal non-Terminal.
+     * @param terminal Terminal.
+     * @return right hand side.
+     * @throws Exception
+     */
     public RightHandSide getEntry( NonTerminal nonTerminal, Terminal terminal ) throws Exception {
         if( !( theTable.containsKey( nonTerminal ) && theTable.get( nonTerminal ).containsKey( terminal ) ) )
             throw new ParseTableEntryNotFoundException( "non-Terminal \"" + nonTerminal.getContent() + "\" and Terminal \"" + terminal.getContent() + "\"" );
         return theTable.get( nonTerminal ).get( terminal );
     }
 
+    /**
+     * Dumps parse table. Useful for debugging purposes.
+     */
     public void dump() {
         for( NonTerminal nonT : theTable.keySet() ) {
             System.out.println("Entries for non-Terminal \"" + nonT.getContent() + "\"" );
