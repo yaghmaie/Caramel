@@ -25,6 +25,11 @@ import Parser.ParseTreeNode;
  * Created by pejman on 6/25/14.
  */
 public class CodeGenerator {
+    /**
+     * Generates code in MIPS assembly for dragon book chapter 4 grammar.
+     * @param tree Parse tree.
+     * @param node Node to create code for.
+     */
     public void cgen( ParseTree tree, ParseTreeNode node ) {
         if( node.parent == null ) {
             System.out.println("\t.text\n\t.globl main\nmain:");

@@ -344,7 +344,7 @@ public class Regex2DFA {
     /**
      * Returns priority of a character. Useful for infix to postfix calculation.
      * @param sym
-     * @return
+     * @return Integer
      */
     private int getSymbolPriority( Character sym ) {
         switch ( sym ) {
