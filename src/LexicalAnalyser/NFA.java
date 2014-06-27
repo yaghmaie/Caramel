@@ -133,8 +133,8 @@ public class NFA extends BigTable<String, State, HashSet > implements FA {
     }
 
     /**
-     *
-     * @return
+     * Creates a clone of this NFA and returns it.
+     * @return New NFA object equivalent to this NFA.
      */
     public NFA clone() {
         NFA res = new NFA();
