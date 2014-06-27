@@ -26,27 +26,57 @@ import java.util.ArrayList;
  * Created by pejman on 6/21/14.
  */
 public class ParseTreeNode {
+    /**
+     * Parent of this node
+     */
     public final ParseTreeNode parent;
+    /**
+     * children of this node
+     */
     public final ArrayList<ParseTreeNode> children = new ArrayList<ParseTreeNode>();
+    /**
+     * Symbol this node is bounded with.
+     */
     public final Symbol symbol;
+    /**
+     * Value this node carrying
+     */
     private String value;
 
+    /**
+     * Constructor of node. Sets parent, symbol and value of node.
+     * @param parent node.
+     * @param symbol Terminal or non-Terminal.
+     * @param value String.
+     */
     public ParseTreeNode( ParseTreeNode parent, Symbol symbol, String value ) {
         this.symbol = symbol;
         this.parent = parent;
         this.value = value;
     }
 
+    /**
+     * Constructor of node. Sets parent and symbol of node.
+     * @param parent node.
+     * @param symbol Terminal or non-Terminal.
+     */
     public ParseTreeNode( ParseTreeNode parent, Symbol symbol ) {
         this.symbol = symbol;
         this.parent = parent;
     }
 
-
+    /**
+     * Get value.
+     * @return value of node.
+     */
     public String getValue() {
         return value;
     }
 
+    /**
+     * Sets value of node.
+     * @param value of node.
+     */
     public void setValue( String value ) {
         this.value = value;
     }

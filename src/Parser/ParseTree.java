@@ -22,16 +22,31 @@ package Parser;
  * Created by pejman on 6/21/14.
  */
 public class ParseTree {
+    /**
+     * Root of tree
+     */
     public final ParseTreeNode root;
 
+    /**
+     * Constructor sets root.
+     * @param node
+     */
     ParseTree( ParseTreeNode node ) {
         root = node;
     }
 
+    /**
+     * Dumps tree containment.
+     */
     public void dump() {
         dump( root, 0 );
     }
 
+    /**
+     * Dumps tree containment from a specific node.
+     * @param node Node to dump tree from.
+     * @param n Number of parent nodes from root.
+     */
     private void dump( ParseTreeNode node, int n ) {
         for( int i = 0; i++ < n; System.out.print("\t") );
         System.out.printf( "Class/Value: %s/%s\n", node.symbol.getContent(), node.getValue() );
